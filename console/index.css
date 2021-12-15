@@ -1,0 +1,6 @@
+textarea:disabled {
+    cursor: default;
+    background-color: white;
+    color: black;
+    border-color: rgba(118, 118, 118);
+}
