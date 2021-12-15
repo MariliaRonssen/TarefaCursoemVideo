@@ -11,7 +11,7 @@ function writeln(t) {
 function readln() {
     return new Promise(function (resolve, reject) {
         let start = ta.value.length;
-        console.log(start);
+        ta.focus();
         ta.onkeydown = function (evt) {
             if (evt.key === 'Enter') {
                 ta.onkeydown = undefined;
