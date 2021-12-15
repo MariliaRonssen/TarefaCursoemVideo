@@ -1,5 +1,6 @@
+let ta = document.getElementById('console');
+
 function write(t) {
-    let ta = document.getElementById('console');
     ta.value = ta.value + t;
 }
 
@@ -8,19 +9,32 @@ function writeln(t) {
 }
 
 function readln() {
-    let ta = document.getElementById('console');
     return new Promise(function (resolve, reject) {
-        let ret = '';
+        let start = ta.value.length;
+        console.log(start);
         ta.onkeydown = function (evt) {
-            setTimeout(() => {
-                if (evt.key === 'Enter') {
-                    ta.onkeydown = undefined;
+            if (evt.key === 'Enter') {
+                ta.onkeydown = undefined;
+                let ret = ta.value.substring(start);
+                setTimeout(() => {
                     resolve(ret);
-                }
-                if (evt.key.length > 1) return;
-                ret += evt.key;
-            }, 1);
+                }, 1);
+            }
         }
+    });
+}
+
+function cls() {
+    ta.value = '';
+}
+
+function sleep(t) {
+    ta.disabled = true;
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            ta.disabled = false;
+            resolve();
+        }, t);
     });
 }
 
